@@ -346,7 +346,6 @@ MonoBehaviour:
   pipePrfab: {fileID: 1911428021223765535, guid: ec9ae63a8f8fc5f4e99331f40c708a79, type: 3}
   birdPrefab: {fileID: 6770251440396712319, guid: d6d99f90a3297ab4ebbd016ff4eecc8e, type: 3}
   pipeSpacing: 2
-  pipeRange: 0.5
 --- !u!4 &1432357102
 Transform:
   m_ObjectHideFlags: 0
