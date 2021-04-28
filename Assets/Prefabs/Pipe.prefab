@@ -45,9 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 780fc45095a7259408c7ac9e2febd00e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pipeBody: {fileID: 1499740131538231243}
-  pipeHead: {fileID: 7220842858869290913}
-  height: 1
 --- !u!1 &1499740131538231243
 GameObject:
   m_ObjectHideFlags: 0
@@ -62,7 +59,7 @@ GameObject:
   - component: {fileID: 4670189547439106583}
   m_Layer: 0
   m_Name: PipeBody
-  m_TagString: Untagged
+  m_TagString: Pipes
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -238,7 +235,7 @@ GameObject:
   - component: {fileID: 1266767315345758398}
   m_Layer: 0
   m_Name: PipeHead
-  m_TagString: Untagged
+  m_TagString: Pipes
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

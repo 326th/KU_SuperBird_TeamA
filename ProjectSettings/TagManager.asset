@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Pipes
+  - Trigger
+  - PipePair
   layers:
   - Default
   - TransparentFX

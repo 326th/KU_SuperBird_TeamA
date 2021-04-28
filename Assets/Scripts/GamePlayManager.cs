@@ -2,25 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GamePlayManager : MonoBehaviour
+public class GamePlayManager : RandomGenerator
 {
-    public GameObject pipePrfab;
-    public GameObject birdPrefab;
-    public float pipeSpacing = 1f;
+    public GameObject pipePrefab;
+    public float pipeSpacing;
+    public Strategy strategy;
 
-    void Start()
+    void Awake()
     {
+        //change strategy here
+        strategy = new SinRandomStrategy(0,50,0.8f,1.6f);
         LevelGenerator();
     }
 
     void LevelGenerator()
     {
-        for(int i = 0; i < 10; i++)
+        for(int i = 0; i < 5; i++)
         {
-            var pipe = Instantiate(pipePrfab);
-            pipe.transform.position = new Vector3(i * pipeSpacing, 0, 0);
+            var pipe = Instantiate(pipePrefab);
+            pipe.transform.position = new Vector3(i * pipeSpacing + 3, 0, 0);
             PipePairController pipePairController = pipe.GetComponent<PipePairController>();
-            pipePairController.SetPipeHeight(10,2,0);
+            pipePairController.SetPipeHeight(10,2, strategy.GetNextNumber());
         }
     }
 }

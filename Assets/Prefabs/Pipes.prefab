@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4267299187786569193}
   - component: {fileID: 1572336488}
+  - component: {fileID: 4714141984048099499}
   m_Layer: 0
   m_Name: Pipes
-  m_TagString: Untagged
+  m_TagString: PipePair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,6 +47,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9fbbb8a628d764981dabf216b87056, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &4714141984048099499
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911428021223765535}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2482554363857695125
 GameObject:
   m_ObjectHideFlags: 0
@@ -60,7 +74,7 @@ GameObject:
   - component: {fileID: 2320531480453747650}
   m_Layer: 0
   m_Name: Trigger
-  m_TagString: Untagged
+  m_TagString: Trigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -152,10 +166,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PipeTop
       objectReference: {fileID: 0}
-    - target: {fileID: 209089977690639213, guid: 719e54498b28f804cac8d94f052113d5, type: 3}
-      propertyPath: m_TagString
-      value: Pipes
-      objectReference: {fileID: 0}
     - target: {fileID: 5395898673404558793, guid: 719e54498b28f804cac8d94f052113d5, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -200,10 +210,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7220842858869290913, guid: 719e54498b28f804cac8d94f052113d5, type: 3}
-      propertyPath: m_TagString
-      value: Pipes
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 719e54498b28f804cac8d94f052113d5, type: 3}
 --- !u!4 &2812373162404413602 stripped
@@ -223,6 +229,10 @@ PrefabInstance:
       value: PipeBottom
       objectReference: {fileID: 0}
     - target: {fileID: 209089977690639213, guid: 719e54498b28f804cac8d94f052113d5, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1499740131538231243, guid: 719e54498b28f804cac8d94f052113d5, type: 3}
       propertyPath: m_TagString
       value: Pipes
       objectReference: {fileID: 0}
