@@ -18,6 +18,8 @@ public class BirdController : MonoBehaviour
     private float pipeSpacing;
     Camera playerCamera;
 
+    [Header("Sound Effect")]
+    public GameObject deadAudio;
 
     private void Awake()
     {
@@ -64,6 +66,7 @@ public class BirdController : MonoBehaviour
             else
             {
                 GameOver();
+                ;
                 return;
             }
         }
@@ -106,6 +109,11 @@ public class BirdController : MonoBehaviour
     }
     private void GameOver()
     {
+        AudioSource audio = deadAudio.GetComponent<AudioSource>();
+        if (!audio.isPlaying)
+        {
+            audio.Play();
+        }
         print("You are dead LOL");
     }
     private void Score()
