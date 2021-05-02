@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5fc6588a828675444a7764e4a229da61
+guid: 180b64798c3f12449a257092e0c345e9
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Lato
+  - Russo One
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
