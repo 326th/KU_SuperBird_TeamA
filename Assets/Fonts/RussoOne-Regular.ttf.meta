@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fd1b13cd22cb9e840bb0b168a3964648
+guid: 180b64798c3f12449a257092e0c345e9
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Roboto
+  - Russo One
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
