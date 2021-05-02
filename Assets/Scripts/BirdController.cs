@@ -24,7 +24,6 @@ public class BirdController : MonoBehaviour
     // added
     private int pipePassed = 0;
     private float scoreMultiplier = 1f;
-    private float highscore = 0;
     public Text textScore;
     public Text textMultiplier;
     public Text textScoreText;
@@ -125,9 +124,23 @@ public class BirdController : MonoBehaviour
         pipePassed = 0;
         SetMultiplierText();
     }
+
+    //modify
     private void GameOver()
     {
         print("You are dead LOL");
+        if (PlayerPrefs.HasKey("HighScore"))
+        {
+            if (PlayerPrefs.GetInt("HighScore") < score)
+            {
+                PlayerPrefs.SetInt("HighScore", (int)score);
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetInt("HighScore", (int)score);
+        }
+        
     }
 
     //modify
