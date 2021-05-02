@@ -20,6 +20,12 @@ public class BirdController : MonoBehaviour
 
     [Header("Sound Effect")]
     public GameObject deadAudio;
+    public GameObject jumpEffect;
+    public GameObject passQTE;
+
+    AudioSource jumpAudioSource;
+    AudioClip  jumpSound;
+
 
     private void Awake()
     {
@@ -32,6 +38,10 @@ public class BirdController : MonoBehaviour
         rb.velocity = Vector3.right * moveSpeed;
         var gamePlayManager = GameObject.Find("[GamePlayManager]").GetComponent<GamePlayManager>();
         pipeSpacing = gamePlayManager.pipeSpacing;
+
+        //Audio Source
+        jumpAudioSource = jumpEffect.GetComponent<AudioSource>();
+        jumpSound = jumpAudioSource.clip;
     }
 
     // Update is called once per frame
@@ -39,10 +49,12 @@ public class BirdController : MonoBehaviour
     {
         if(currentQTETime >= 0)
         {
+            jumpAudioSource.Stop();
             HandleQTE();
         }
         if (Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.Space))
         {
+            jumpAudioSource.PlayOneShot(jumpSound);
             rb.velocity = new Vector3(rb.velocity.x,jumpPower);
         } 
     }
@@ -55,6 +67,11 @@ public class BirdController : MonoBehaviour
         {
             if (currentQTEbuttonCount >= currentQTERequirement)
             {
+                AudioSource audio = passQTE.GetComponent<AudioSource>();
+                if (!audio.isPlaying)
+                {
+                    audio.Play();
+                }
                 // deinitiate QTE
                 rb.isKinematic = false;
                 ToggleZoom();
