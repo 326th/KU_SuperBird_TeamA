@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//added
+using UnityEngine.UI;
+
 public class BirdController : MonoBehaviour
 {
     Rigidbody rb;
     public GameObject SpaceBar;
     public float jumpPower = 3f;
     public float moveSpeed = 1f;
-    public int score = 0;
+    public float score = 0;
     public float QTEDuration = 5;
     public int QTEIncrement = 5;
     private int currentQTERequirement = 0;
@@ -18,6 +21,15 @@ public class BirdController : MonoBehaviour
     private float pipeSpacing;
     Camera playerCamera;
 
+    // added
+    private int pipePassed = 0;
+    private float scoreMultiplier = 1f;
+    private float highscore = 0;
+    public Text textScore;
+    public Text textMultiplier;
+    public Text textScoreText;
+
+    // public Text textScoreMultiplier;
 
     private void Awake()
     {
@@ -30,8 +42,8 @@ public class BirdController : MonoBehaviour
         rb.velocity = Vector3.right * moveSpeed;
         var gamePlayManager = GameObject.Find("[GamePlayManager]").GetComponent<GamePlayManager>();
         pipeSpacing = gamePlayManager.pipeSpacing;
-    }
 
+    }
     // Update is called once per frame
     void Update()
     {
@@ -89,7 +101,11 @@ public class BirdController : MonoBehaviour
     {
         if (other.gameObject.tag == "Trigger")
         {
+            pipePassed++;
             Score();
+
+            //added
+            
         }
     }
     private void Death()
@@ -103,15 +119,34 @@ public class BirdController : MonoBehaviour
         ToggleZoom();
         currentQTETime = 0;
         currentQTERequirement += QTEIncrement;
+
+        //added
+        scoreMultiplier = 1;
+        pipePassed = 0;
+        SetMultiplierText();
     }
     private void GameOver()
     {
         print("You are dead LOL");
     }
-    private void Score()
+
+    //modify
+    public void Score()
     {
-        score ++;
-        print(score);
+        score = score + (1 * scoreMultiplier);
+        textScore.text = score.ToString();
+        if (pipePassed >= 5)
+        {
+            scoreMultiplier++;
+            pipePassed = 0;
+            SetMultiplierText();
+        }
+
+    }
+    //added
+    public void SetMultiplierText()
+    {
+        textMultiplier.text = "X" + scoreMultiplier.ToString();
     }
     private void ToggleZoom()
     {
@@ -122,11 +157,23 @@ public class BirdController : MonoBehaviour
             playerCamera.transform.position = transform.position + (Vector3.back * 4);
             playerCamera.fieldOfView = 25;
             SpaceBar.SetActive(true);
+
+            //added
+            textScore.gameObject.SetActive(false);
+            textScoreText.gameObject.SetActive(false);
+            textMultiplier.gameObject.SetActive(false);
             return;
         }
         playerCamera.transform.position = new Vector3(0, 0, -7);
         playerCamera.gameObject.GetComponent<CameraFollow>().stop = false;
         playerCamera.fieldOfView = 60;
         SpaceBar.SetActive(false);
+
+        //added
+        textScore.gameObject.SetActive(true);
+        textScoreText.gameObject.SetActive(true);
+        textMultiplier.gameObject.SetActive(true);
+
+
     }
 }
