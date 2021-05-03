@@ -16,7 +16,7 @@ public class PipeTeleporterController : RandomGenerator
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "PipePair")
+        if (other.gameObject.tag == "PipePair")
         {
             var pipe = Instantiate(pipePrefab);
             pipe.transform.position = other.transform.position + Vector3.right * pipeSpacing * 5;
