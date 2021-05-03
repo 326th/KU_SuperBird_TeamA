@@ -16,6 +16,7 @@ public class BirdController : MonoBehaviour
     private float currentQTETime = -1;
     private bool zoomed_in = false;
     private float pipeSpacing;
+    private bool mirrorMode;
     Camera playerCamera;
 
 
@@ -30,6 +31,8 @@ public class BirdController : MonoBehaviour
         rb.velocity = Vector3.right * moveSpeed;
         var gamePlayManager = GameObject.Find("[GamePlayManager]").GetComponent<GamePlayManager>();
         pipeSpacing = gamePlayManager.pipeSpacing;
+        var mirrorModeManager = GameObject.Find("[MirrorModeManager]").GetComponent<MirrorMode>();
+        mirrorMode = mirrorModeManager.mirror;
     }
 
     // Update is called once per frame
@@ -119,7 +122,12 @@ public class BirdController : MonoBehaviour
         if (zoomed_in)
         {
             playerCamera.gameObject.GetComponent<CameraFollow>().stop = true;
-            playerCamera.transform.position = transform.position + (Vector3.back * 4);
+            var newPos = transform.position + (Vector3.back * 4);
+            if (mirrorMode)
+            {
+                newPos = transform.position - (Vector3.back * 4);
+            }
+            playerCamera.transform.position = newPos;
             playerCamera.fieldOfView = 25;
             SpaceBar.SetActive(true);
             return;
