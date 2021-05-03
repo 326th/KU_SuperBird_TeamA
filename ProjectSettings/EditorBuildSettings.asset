@@ -4,5 +4,20 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/BirdSelectionScene.unity
+    guid: 8aabbb2c105ee56449f34c84323ce3c5
+  - enabled: 1
+    path: Assets/Scenes/GamePlayScene.unity
+    guid: 4b6aa0f4286ac994081f5dd6b21b9024
+  - enabled: 1
+    path: Assets/Scenes/HomeScene.unity
+    guid: 2e3bd3dea15fd6a49be27c9520bc5555
+  - enabled: 1
+    path: Assets/Scenes/CreditsScene.unity
+    guid: 34bd440913881a14db3c463145ec5dbb
+  - enabled: 1
+    path: Assets/Scenes/DifficultySelectScene.unity
+    guid: 68d4a8900a730994bb186515532608f1
   m_configObjects: {}
