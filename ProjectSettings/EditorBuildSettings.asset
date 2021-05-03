@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DifficultySelectScene.unity
     guid: 68d4a8900a730994bb186515532608f1
+  - enabled: 1
+    path: Assets/Scenes/GameOverScene.unity
+    guid: 1ab2813219c62bc40846e1ae5c4f951a
   m_configObjects: {}

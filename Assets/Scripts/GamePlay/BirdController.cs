@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BirdController : MonoBehaviour
 {
     Rigidbody rb;
     public GameObject SpaceBar;
+    private GameObject deadText;
     public float jumpPower = 3f;
     public float moveSpeed = 1f;
     public int score = 0;
@@ -15,6 +17,8 @@ public class BirdController : MonoBehaviour
     public bool mirror = false;
     public int gravScale = 1;
     public float mirrorTextShift = 100;
+    public float DeathTime = 3.3f;
+    private float currentDeathTime = 0;
     private int currentQTERequirement = 0;
     private int currentQTEbuttonCount = 0;
     private float currentQTETime = -1;
@@ -63,8 +67,10 @@ public class BirdController : MonoBehaviour
                 );
             FlipCamera();
         }
-        Physics.gravity *= gravScale;
-        jumpPower *= gravScale;
+        Physics.gravity = Vector3.down * Mathf.Abs(Physics.gravity.y) * gravScale;
+        jumpPower = Mathf.Abs(jumpPower) * gravScale;
+        deadText = GameObject.Find("DeathText");
+        deadText.SetActive(false);
     }
 
     // Update is called once per frame
@@ -72,6 +78,15 @@ public class BirdController : MonoBehaviour
     {
         if(Time.timeScale == 0)
         {
+            return;
+        }
+        if(currentDeathTime > 0)
+        {
+            if (currentDeathTime > DeathTime)
+            {
+                SceneManager.LoadScene("GameOverScene");
+            }
+            currentDeathTime += Time.deltaTime;
             return;
         }
         if (survivedQTE >0)
@@ -161,8 +176,9 @@ public class BirdController : MonoBehaviour
     }
     private void GameOver()
     {
+        deadText.SetActive(true);
+        SpaceBar.SetActive(false);
         deadAudio.Play();
-        print("You are dead LOL");
         if (PlayerPrefs.HasKey("HighScore"))
         {
             if (PlayerPrefs.GetInt("HighScore") < score)
@@ -174,7 +190,8 @@ public class BirdController : MonoBehaviour
         {
             PlayerPrefs.SetInt("HighScore", score);
         }
-        Destroy(this);
+        PlayerPrefs.SetInt("Score", score);
+        currentDeathTime += Time.deltaTime;
     }
     private void Score()
     {
