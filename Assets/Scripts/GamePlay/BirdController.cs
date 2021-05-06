@@ -9,6 +9,7 @@ public class BirdController : MonoBehaviour
     Rigidbody rb;
     public GameObject SpaceBar;
     private GameObject deadText;
+    public GameObject LeftAnchor;
     public float jumpPower = 3f;
     public float moveSpeed = 1f;
     public int score = 0;
@@ -53,7 +54,9 @@ public class BirdController : MonoBehaviour
         jumpSound = jumpEffect.clip;
         if (mirror)
         {
-            GameObject.Find("ScoreGroup").transform.position += Vector3.left * mirrorTextShift;
+            var text = GameObject.Find("ScoreGroup");
+            text.transform.SetParent(LeftAnchor.transform);
+            text.transform.localPosition = Vector3.zero;
             var light = GameObject.Find("Directional Light");
             light.transform.eulerAngles = new Vector3(
                 light.transform.eulerAngles.x + 90,
@@ -86,7 +89,7 @@ public class BirdController : MonoBehaviour
             {
                 SceneManager.LoadScene("GameOverScene");
             }
-            currentDeathTime += Time.deltaTime;
+            currentDeathTime += Time.deltaTime/ Time.timeScale;
             return;
         }
         if (survivedQTE >0)
@@ -191,7 +194,7 @@ public class BirdController : MonoBehaviour
             PlayerPrefs.SetInt("HighScore", score);
         }
         PlayerPrefs.SetInt("Score", score);
-        currentDeathTime += Time.deltaTime;
+        currentDeathTime += Time.deltaTime/ Time.timeScale;
     }
     private void Score()
     {
