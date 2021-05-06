@@ -4031,6 +4031,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpaceBar: {fileID: 0}
+  LeftAnchor: {fileID: 2008894615}
   jumpPower: 3
   moveSpeed: 1
   score: 0
